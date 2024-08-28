@@ -3,6 +3,18 @@
     font-family: Arial, sans-serif;
   }
   
+  header.search-header {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
   section {
     margin-bottom: 30px;
   }
@@ -30,5 +42,12 @@
   
   .stock-item:last-child {
     border-bottom: none;
+  }
+
+  .top-section {
+    background-color: green;
+  }
+  .bottom-section {
+    background-color:red;
   }
   
