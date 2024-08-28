@@ -1,17 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
+import Header from './components/Header'; // Import the Header component
+import HomePage from './pages/HomePage'; // Import the HomePage component
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-      </Routes>
-    </Router>
+    <div>
+      <Header />
+      <main>
+        <HomePage /> 
+      </main>
+    </div>
   );
-}
+};
 
 export default App;
