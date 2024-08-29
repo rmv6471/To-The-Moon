@@ -6,7 +6,13 @@ const fetchNewsArticles = async (ticker) => {
 
   try {
     const response = await axios.get(url);
-    return response.data.articles; // Returns an array of articles
+    return response.data.articles.map(article => ({
+      title: article.title,
+      url: article.url,
+      source: article.source.name,
+      publishedAt: article.publishedAt,
+      description: article.description // Ensure the description is included
+    }));
   } catch (err) {
     console.error('Error fetching news from NewsAPI:', err);
     throw err;

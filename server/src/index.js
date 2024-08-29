@@ -33,6 +33,7 @@ app.get('/api/news/:ticker', async (req, res) => {
           const newsArticle = new NewsArticle({
             ticker,
             title: article.title,
+            description: article.description, 
             url: article.url,
             source: article.source.name,
             publishedAt: article.publishedAt,
