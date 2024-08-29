@@ -1,30 +1,53 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const NewsArticle = require('./models/NewsArticle'); // Assuming your model files are in a 'models' folder inside 'src'
-const Sentiment = require('./models/Sentiment'); // Assuming your model files are in a 'models' folder inside 'src'
+const NewsArticle = require('./models/NewsArticle');
+const Sentiment = require('./models/Sentiment');
+const fetchNewsArticles = require('./fetchNewsArticles'); // Import the fetchNewsArticles function
 require('dotenv').config();
 
 const app = express();
 app.use(express.json()); // To parse JSON bodies
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Routes
 
-// Fetch news articles by stock ticker
+// Fetch and store news articles by stock ticker
 app.get('/api/news/:ticker', async (req, res) => {
   try {
     const { ticker } = req.params;
-    const articles = await NewsArticle.find({ ticker });
+
+    // Check if articles exist in the database
+    let articles = await NewsArticle.find({ ticker });
+
+    if (articles.length === 0) {
+      // If no articles found, fetch from NewsAPI
+      articles = await fetchNewsArticles(ticker);
+
+      // Store the fetched articles in MongoDB
+      const savedArticles = await Promise.all(
+        articles.map(article => {
+          const newsArticle = new NewsArticle({
+            ticker,
+            title: article.title,
+            url: article.url,
+            source: article.source.name,
+            publishedAt: article.publishedAt,
+          });
+          return newsArticle.save();
+        })
+      );
+
+      return res.json(savedArticles);
+    }
+
+    // Return the articles from the database
     res.json(articles);
   } catch (err) {
-    res.status(500).json({ error: 'Error fetching news articles' });
+    res.status(500).json({ error: 'Error fetching and storing news articles' });
   }
 });
 
