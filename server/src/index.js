@@ -25,6 +25,18 @@ const sentimentRoutes = require('./routes/sentimentRoutes');
 app.use('/api/news', newsRoutes);
 app.use('/api/sentiments', sentimentRoutes);
 
+//Call fetchNewsArticles
+app.get('/api/news/:ticker', async (req, res) => {
+  const ticker = req.params.ticker;
+  
+  try {
+    const articles = await fetchNewsArticles(ticker);
+    res.json(articles);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching news articles' });
+  }
+});
+
 // Start server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
