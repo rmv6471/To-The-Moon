@@ -15,3 +15,6 @@ Thumbs.db
 .idea/.env
 
 .env
+
+#Test file
+server/src/test.js

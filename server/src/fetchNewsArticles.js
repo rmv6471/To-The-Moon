@@ -11,7 +11,7 @@ const fetchNewsArticles = async (ticker) => {
       url: article.url,
       source: article.source.name,
       publishedAt: article.publishedAt,
-      description: article.description // Ensure the description is included
+      description: article.description 
     }));
   } catch (err) {
     console.error('Error fetching news from NewsAPI:', err);
