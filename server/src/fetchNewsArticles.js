@@ -2,7 +2,10 @@ const axios = require('axios');
 
 const fetchNewsArticles = async (ticker) => {
   const apiKey = process.env.NEWS_API_KEY;
-  const url = `https://newsapi.org/v2/everything?q=${ticker}&apiKey=${apiKey}`;
+  
+  const date = new Date();
+  const fromDate = new Date(date.getTime() - 24 * 60 * 60 * 1000).toISOString();
+  const url = `https://newsapi.org/v2/everything?q=${ticker}&from=${fromDate}&sortBy=publishedAt&apiKey=${apiKey}`;
 
   try {
     const response = await axios.get(url);
@@ -14,7 +17,7 @@ const fetchNewsArticles = async (ticker) => {
       description: article.description 
     }));
   } catch (err) {
-    console.error('Error fetching news from NewsAPI:', err);
+    console.error('Error fetching news from NewsAPI:', err.response ? err.response.data : err.message);
     throw err;
   }
 };
