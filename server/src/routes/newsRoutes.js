@@ -36,6 +36,7 @@ router.get('/:ticker', async (req, res) => {
             url: article.url,
             source: article.source,
             publishedAt: article.publishedAt,
+            sentiment: article.sentiment
           });
           return newsArticle.save();
         })
