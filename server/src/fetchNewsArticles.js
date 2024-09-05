@@ -11,7 +11,7 @@ const fetchNewsArticles = async (ticker) => {
     const response = await axios.get(url);
     const articlesWithSentiment = await Promise.all(response.data.articles.map(async article => {
       // Assuming description holds the content for sentiment analysis
-      const sentiment = analyzeSentiment(article.title);
+      const sentiment = analyzeSentiment(article.description);
       return {
         title: article.title,
         url: article.url,
