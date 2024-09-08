@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const NewsArticle = require('./models/NewsArticle');
-const Sentiment = require('./models/Sentiment');
+const aggregatedSentiment = require('./models/AggregatedSentiment');
 const fetchNewsArticles = require('./fetchNewsArticles.js'); // Import the fetchNewsArticles function
+
+const aggregatedSentimentRoutes = require('./routes/aggregatedSentimentRoutes');
+
 
 // Load environment variables from .env file in the root directory
 require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
@@ -24,6 +27,8 @@ const sentimentRoutes = require('./routes/sentimentRoutes');
 // Use routes
 app.use('/api/news', newsRoutes);
 app.use('/api/sentiments', sentimentRoutes);
+app.use('/api/aggregated', aggregatedSentimentRoutes);
+
 
 //Call fetchNewsArticles
 app.get('/api/news/:ticker', async (req, res) => {
