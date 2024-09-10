@@ -1,10 +1,13 @@
 import React from 'react';
-import './Header.css'; // Import the CSS file for styling
+import './Header.css'; // Make sure to create a CSS file for styling
 
 const Header = () => {
   return (
     <header className="header">
-      <h1>Welcome to the Launch Pad 🚀 🚀 🚀</h1>
+      <div className="header-content">
+        <h1>To the Moon</h1>
+        <input type="text" placeholder="Search ticker, company, or profile" />
+      </div>
     </header>
   );
 };
