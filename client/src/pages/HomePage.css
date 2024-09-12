@@ -1,53 +1,9 @@
-.container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  header.search-header {
-    margin-bottom: 20px;
-  }
-  
-  .search-bar {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  section {
-    margin-bottom: 30px;
-  }
-  
-  .top-section, .bottom-section {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #f9f9f9;
-  }
-  
-  h2 {
-    margin-top: 0;
-  }
-  
-  .stock-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .stock-item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .stock-item:last-child {
-    border-bottom: none;
-  }
-
-  .top-section {
-    background-color: green;
-  }
-  .bottom-section {
-    background-color:red;
-  }
-  
+.home-container {
+  height: 75vh;
+  width: 100vw;
+  background-image: url('/public/assets/images/space.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-top: 0;  /* Removes any space between the header and this container */
+}
