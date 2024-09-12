@@ -22,13 +22,12 @@ async function updateAggregatedSentiment(ticker) {
 const fetchNewsArticles = async (ticker) => {
   const apiKey = process.env.NEWS_API_KEY;
   const date = new Date();
-  const fromDate = new Date(date.getTime() - 48 * 60 * 60 * 1000).toISOString();
+  const fromDate = new Date(date.getTime() - 48 * 60 * 60 * 1000).toISOString(); //Obtains stock information from past 48 horus
   const url = `https://newsapi.org/v2/everything?q=${ticker}&from=${fromDate}&sortBy=publishedAt&apiKey=${apiKey}`;
 
   try {
     const response = await axios.get(url);
     const articlesWithSentiment = await Promise.all(response.data.articles.map(async article => {
-      // Assuming description holds the content for sentiment analysis
       const sentiment = analyzeSentiment(article.description);
       return {
         title: article.title,
@@ -36,7 +35,7 @@ const fetchNewsArticles = async (ticker) => {
         source: article.source.name,
         publishedAt: article.publishedAt,
         description: article.description,
-        sentiment  // Store sentiment scores here
+        sentiment  
       };
     }));
     return articlesWithSentiment;
