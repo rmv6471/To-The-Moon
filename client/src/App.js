@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/HomePage';
-import News from './pages/NewsPage';  // Assume you have this
-import Trends from './pages/TrendsPage';  // Assume you have this
+import News from './pages/NewsPage';  
+import Trends from './pages/TrendsPage';  
 import About from './pages/AboutPage';
+import SentimentScore from './components/SentimentScore';  
+
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="/news" element={<News />} />
         <Route path="/trends" element={<Trends />} />
         <Route path="/about" element={<About />} />
+        <Route path="/sentiment/:ticker" element={<SentimentScore />} />
       </Routes>
       
     </Router>
