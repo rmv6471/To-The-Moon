@@ -10,35 +10,64 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  margin-top: 0;  /* Removes any space between the header and this container */
+  margin-top: 0;
 }
 
 .centered-content {
   display: flex;
   justify-content: center;
-  flex-direction: column; /* This will stack the children vertically */
+  flex-direction: column;
   align-items: center;
   height: 100vh;
   width: 100vw;
   color: white;
   font-size: 2em;
   text-align: center;
-  font-family: 'MoonFont',sans-serif;
-  margin: 0px;
+  font-family: 'MoonFont', sans-serif;
+  margin-top: 0px; 
 }
 
 .centered-content p {
-  margin: 0; 
+  margin: 0;
 }
 
 .to-the-text {
-  font-size:1.2em;
+  font-size: 1.2em;
 }
 
 .moon-text {
-  font-size: 2em; 
+  font-size: 2em;
+  margin-top: 2em;
 }
 
-.description-text{
-  font-size:.4em;
+.description-text {
+  font-size: 0.4em;
+}
+
+.widgets-container,
+.widgets-left,
+.widgets-right,
+.widgets-fifth {
+  font-family: Arial, sans-serif; 
+}
+
+.widgets-container {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 100px;
+}
+
+.widgets-left,
+.widgets-right {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.widgets-fifth {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
