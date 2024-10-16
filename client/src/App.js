@@ -8,7 +8,7 @@ import News from './pages/NewsPage';
 import Trends from './pages/TrendsPage';  
 import About from './pages/AboutPage';
 import SentimentScore from './components/SentimentScore';  
-
+import StockDetail from './pages/StockDetails';
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/trends" element={<Trends />} />
         <Route path="/about" element={<About />} />
         <Route path="/sentiment/:ticker" element={<SentimentScore />} />
+        <Route path="/stock/:ticker" element={<StockDetail />} />
       </Routes>
       
     </Router>
